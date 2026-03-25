@@ -31,34 +31,53 @@ export default function TerminalDemo({ steps = [], loop = true }: Props) {
   }, [visible, steps, loop])
 
   return (
-    <div className="rounded-lg overflow-hidden border border-bg-border my-6">
+    <div
+      className="rounded-xl overflow-hidden my-6"
+      style={{
+        border: '1px solid #3e1465',
+        boxShadow: '0 0 0 1px rgba(212,160,232,0.08), 0 8px 32px rgba(12,5,24,0.6)',
+      }}
+    >
       {/* ウィンドウヘッダー */}
-      <div className="bg-bg-card px-4 py-2 flex items-center gap-2 border-b border-bg-border">
-        <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-        <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-        <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
-        <span className="text-text-muted text-xs ml-2">terminal</span>
+      <div
+        className="px-4 py-2 flex items-center gap-2 border-b"
+        style={{
+          background: 'linear-gradient(135deg, #1e0e38 0%, #180e2c 100%)',
+          borderColor: '#3e1465',
+        }}
+      >
+        <span className="w-3 h-3 rounded-full bg-[#ff6b7a]" style={{ boxShadow: '0 0 4px #ff6b7a88' }} />
+        <span className="w-3 h-3 rounded-full bg-[#ffc55a]" style={{ boxShadow: '0 0 4px #ffc55a88' }} />
+        <span className="w-3 h-3 rounded-full bg-[#5af078]" style={{ boxShadow: '0 0 4px #5af07888' }} />
+        <span className="text-xs ml-2" style={{ color: '#8a78a8' }}>✦ terminal</span>
       </div>
       {/* コンテンツ */}
-      <div className="bg-bg-primary px-5 py-4 font-mono text-sm min-h-[120px]">
+      <div
+        className="px-5 py-4 font-mono text-sm min-h-[120px]"
+        style={{ background: '#0c0518', lineHeight: '1.6' }}
+      >
         {steps.slice(0, visible).map((step, i) => (
           <div
             key={i}
-            className={`mb-1 fade-in ${
-              step.type === 'command' ? 'text-accent-purple' : ''
-            }`}
-            style={{ color: step.type === 'response' ? (step.color ?? '#ce93d8') : undefined }}
+            className="fade-in"
+            style={{
+              marginBottom: '0.25rem',
+              color: step.type === 'command'
+                ? '#d4a0e8'
+                : (step.color ?? '#f0a0c4'),
+              lineHeight: '1.6',
+            }}
           >
             {step.type === 'command' && (
-              <span className="text-text-muted mr-2">$</span>
+              <span style={{ color: '#8a78a8', marginRight: '0.5rem' }}>$</span>
             )}
             {step.text}
           </div>
         ))}
         {visible < steps.length && steps[visible].type === 'command' && (
-          <div className="text-accent-purple">
-            <span className="text-text-muted mr-2">$</span>
-            <span className="typing-line inline-block">{steps[visible].text}</span>
+          <div style={{ color: '#d4a0e8', lineHeight: '1.6', marginBottom: '0.25rem' }}>
+            <span style={{ color: '#8a78a8', marginRight: '0.5rem' }}>$</span>
+            <span className="typing-line">{steps[visible].text}</span>
           </div>
         )}
       </div>
