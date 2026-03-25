@@ -1,0 +1,66 @@
+---
+title: "Pluginsを自分で作る"
+description: "複数のSkillをまとめたカスタムプラグインを作る方法"
+---
+
+チームや個人で使い回したいSkillが複数ある場合、Pluginにまとめると管理・配布がしやすくなる。
+
+## Pluginのディレクトリ構造
+
+```
+~/.claude/plugins/cache/
+└── my-plugin/               ← Plugin名（任意）
+    └── skills/
+        ├── daily-log.md     ← Skill単品
+        ├── deploy.md        ← Skill単品
+        └── review.md        ← Skill単品
+```
+
+## Step 1: ディレクトリを作る
+
+<CodeBlock lang="bash" code={`mkdir -p ~/.claude/plugins/cache/my-plugin/skills`} />
+
+## Step 2: Skillファイルを追加する
+
+それぞれのSkillを `.md` ファイルで作成してフォルダに入れる：
+
+```markdown
+---
+name: daily-log
+description: 今日の作業内容をまとめた日誌を作る
+---
+
+今日変更したファイルとコミット履歴を確認し、
+作業日誌（YYYY-MM-DD.md）を logs/ フォルダに作成する。
+```
+
+## Step 3: 動作確認
+
+<CodeBlock lang="bash" code="/daily-log" />
+
+プラグイン内のSkillはそのままスラッシュコマンドで呼び出せる。
+
+## チームで共有する方法
+
+GitHubリポジトリにPluginを置いて、メンバーが各自インストールする形が一般的：
+
+```
+your-org/team-plugin/
+└── skills/
+    ├── deploy.md
+    ├── pr-review.md
+    └── standup.md
+```
+
+<CodeBlock lang="bash" code={`# リポジトリをcloneしてプラグインフォルダに配置\ngit clone https://github.com/your-org/team-plugin \\\n  ~/.claude/plugins/cache/team-plugin`} />
+
+これで `/deploy` や `/pr-review` がチーム全員で使えるようになる。
+
+## SkillとPluginを使い分けるコツ
+
+| こんなとき | 選択 |
+|---|---|
+| 1つの作業を自動化したい | Skill単品を作る |
+| 関連する複数の作業をまとめたい | Pluginにする |
+| チームで共有したい | GitHubにPlugin化して配布 |
+| 試しに作ってみたい | まずSkill単品から始める |

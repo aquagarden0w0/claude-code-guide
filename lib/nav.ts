@@ -36,11 +36,20 @@ export const NAV_STRUCTURE: NavSection[] = [
     ],
   },
   {
+    title: 'Plugins',
+    items: [
+      { emoji: '🧩', label: 'Pluginsとは？',          slug: 'plugins/what-are-plugins' },
+      { emoji: '📦', label: 'Pluginsのインストール',   slug: 'plugins/installing-plugins' },
+      { emoji: '🛠️', label: 'Pluginsを自分で作る',    slug: 'plugins/creating-plugins' },
+    ],
+  },
+  {
     title: 'もっと深く',
     items: [
-      { emoji: '⚡', label: 'Tips & テクニック',     slug: 'advanced/tips-and-tricks' },
-      { emoji: '❓', label: 'よくある質問',           slug: 'advanced/faq' },
-      { emoji: '🔗', label: 'おすすめリンク集',       slug: 'advanced/links' },
+      { emoji: '⚡', label: 'Tips & テクニック',       slug: 'advanced/tips-and-tricks' },
+      { emoji: '⭐', label: 'おすすめプラグイン・スキル集', slug: 'advanced/recommended' },
+      { emoji: '❓', label: 'よくある質問',             slug: 'advanced/faq' },
+      { emoji: '🔗', label: 'おすすめリンク集',         slug: 'advanced/links' },
     ],
   },
 ]

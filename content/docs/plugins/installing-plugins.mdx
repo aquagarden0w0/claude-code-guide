@@ -1,0 +1,56 @@
+---
+title: "Pluginsのインストール"
+description: "公式プラグイン（Superpowers）を導入する手順"
+---
+
+## 公式プラグイン（Superpowers）のインストール
+
+Claude Code起動後、以下のコマンドを入力するだけでインストールできる：
+
+<CodeBlock lang="bash" code="claude /install-github-app" />
+
+ブラウザが開いてGitHub連携の認証画面が表示される。認証が完了するとSuperpowersプラグインが自動的にインストールされる。
+
+## インストール後の確認
+
+<TerminalDemo steps={[
+  { type: "command", text: "/commit" },
+  { type: "response", text: "✓ Skill 'commit' を読み込み中..." },
+  { type: "response", text: "✓ 変更内容を自動検出しました", color: "var(--color-accent-pink)" },
+  { type: "response", text: "✓ feat: ログイン機能を追加" },
+]} />
+
+`/commit` や `/review` が動けばインストール成功！
+
+## インストール先
+
+プラグインは以下のパスに保存される：
+
+```
+~/.claude/plugins/cache/
+└── claude-plugins-official/
+    └── superpowers/
+        └── skills/
+            ├── commit/
+            ├── review/
+            └── ...
+```
+
+## アップデート方法
+
+<CodeBlock lang="bash" code="claude /update-skills" />
+
+新しいSkillが追加されたときもこのコマンドで最新版に更新できる。
+
+## 複数のプラグインを管理する
+
+プラグインごとに独立したディレクトリで管理されるため、複数のプラグインを共存させることができる。
+
+```
+~/.claude/plugins/cache/
+├── superpowers/          ← 公式プラグイン
+├── my-team-plugin/       ← チームのプラグイン
+└── personal-plugin/      ← 個人のプラグイン
+```
+
+インストールが完了したら[Pluginsを自分で作る](/docs/plugins/creating-plugins)も読んでみよう！

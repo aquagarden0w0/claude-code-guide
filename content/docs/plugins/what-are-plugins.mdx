@@ -1,0 +1,48 @@
+---
+title: "Pluginsとは？"
+description: "スキルをまとめた配布単位「プラグイン」について"
+---
+
+Pluginとは、**複数のSkillをひとまとめにした配布パッケージ**のこと。1つのPluginをインストールするだけで、関連する複数のSkillが一気に使えるようになる。
+
+## SkillとPluginの違い
+
+| | Plugin | Skill |
+|---|---|---|
+| 単位 | スキル集（パッケージ） | スキル単品 |
+| インストール | 1コマンドで複数スキル導入 | ファイルを1つ置く |
+| 用途 | 関連機能をまとめて配布・管理 | 特定の作業を1つ定義 |
+
+**まとめると：**
+- Plugin = npm パッケージ
+- Skill = そのパッケージが提供する関数
+
+## Pluginのディレクトリ構造
+
+インストールされたPluginは以下のように保存される：
+
+```
+~/.claude/
+└── plugins/
+    └── cache/
+        └── superpowers/          ← Plugin名
+            └── 5.0.5/            ← バージョン
+                └── skills/
+                    ├── commit.md
+                    ├── review.md
+                    └── debug.md
+```
+
+## 代表的なPlugin：Superpowers
+
+Claude Code公式の**Superpowersプラグイン**には、開発作業で毎日使えるSkillが多数収録されている。
+
+- `/commit` — Gitコミットを自動生成
+- `/review` — コードレビューを実行
+- `/debug` — 体系的なデバッグ手順
+- `/brainstorming` — 実装前の設計相談
+- `/writing-plans` — 実装計画の作成
+
+詳しいSkillの一覧は[おすすめプラグイン・スキル集](/docs/advanced/recommended)で紹介している。
+
+[次のページ](/docs/plugins/installing-plugins)でインストール方法を確認しよう。
