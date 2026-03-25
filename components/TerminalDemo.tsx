@@ -54,18 +54,18 @@ export default function TerminalDemo({ steps = [], loop = true }: Props) {
       {/* コンテンツ */}
       <div
         className="px-5 py-4 font-mono text-sm min-h-[120px]"
-        style={{ background: '#0c0518', lineHeight: '1.6' }}
+        style={{ background: '#0c0518' }}
       >
         {steps.slice(0, visible).map((step, i) => (
           <div
             key={i}
             className="fade-in"
             style={{
-              marginBottom: '0.25rem',
-              color: step.type === 'command'
-                ? '#d4a0e8'
-                : (step.color ?? '#f0a0c4'),
-              lineHeight: '1.6',
+              height: '1.6em',
+              lineHeight: '1.6em',
+              marginBottom: '0.2rem',
+              overflow: 'hidden',
+              color: step.type === 'command' ? '#d4a0e8' : (step.color ?? '#f0a0c4'),
             }}
           >
             {step.type === 'command' && (
@@ -75,7 +75,15 @@ export default function TerminalDemo({ steps = [], loop = true }: Props) {
           </div>
         ))}
         {visible < steps.length && steps[visible].type === 'command' && (
-          <div style={{ color: '#d4a0e8', lineHeight: '1.6', marginBottom: '0.25rem' }}>
+          <div
+            style={{
+              height: '1.6em',
+              lineHeight: '1.6em',
+              marginBottom: '0.2rem',
+              overflow: 'hidden',
+              color: '#d4a0e8',
+            }}
+          >
             <span style={{ color: '#8a78a8', marginRight: '0.5rem' }}>$</span>
             <span className="typing-line">{steps[visible].text}</span>
           </div>
