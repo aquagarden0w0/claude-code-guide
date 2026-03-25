@@ -1,0 +1,26 @@
+---
+title: "ファイルを操作する"
+description: "ファイルの読み込み・編集・作成をClaudeに任せよう"
+---
+
+Claude Codeはファイルの操作が得意。「このファイルを〜して」と言うだけで色々やってくれる。
+
+## ファイルを読んでもらう
+
+<CodeBlock lang="bash" code='claude "app.py の内容を説明して"' />
+
+## ファイルを編集してもらう
+
+<CodeBlock lang="bash" code='claude "index.html に問い合わせフォームを追加して"' />
+
+## 新しいファイルを作ってもらう
+
+<CodeBlock lang="bash" code='claude "utils.py を作って。よく使うヘルパー関数を3つ書いて"' />
+
+## 複数ファイルをまとめて処理
+
+<CodeBlock lang="bash" code='claude "srcフォルダ内の全Pythonファイルにdocstringを追加して"' />
+
+## ポイント
+
+ファイル名を指定するとClaudeが直接そのファイルを読んで編集してくれる。**変更前のバックアップはGitで管理しておくと安心！**

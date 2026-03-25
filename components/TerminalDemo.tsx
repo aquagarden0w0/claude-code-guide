@@ -11,7 +11,7 @@ type Props = {
   loop?: boolean
 }
 
-export default function TerminalDemo({ steps, loop = true }: Props) {
+export default function TerminalDemo({ steps = [], loop = true }: Props) {
   const [visible, setVisible] = useState<number>(0)
 
   useEffect(() => {

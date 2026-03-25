@@ -1,0 +1,23 @@
+---
+title: "Claude Codeとは？"
+description: "AIと一緒にコードを書けるツールの概要"
+---
+
+Claude Codeは、Anthropicが作ったAIペアプログラミングツール。ターミナル（コマンドライン）から日本語で話しかけるだけで、コードの生成・修正・説明をAIがやってくれる。
+
+## できること
+
+- **コードを書いてもらう** — 「ログイン画面を作って」と言えばそのまま実装
+- **バグを直してもらう** — エラーメッセージをそのまま貼り付けるだけ
+- **コードを説明してもらう** — 「この関数は何をしてる？」と聞けばOK
+- **リファクタリング** — 「もっときれいに書いて」で自動整理
+
+## 料金
+
+Claude Codeは **Anthropicのアカウント** があれば使える。無料枠あり。詳しくは[公式サイト](https://www.anthropic.com)を確認。
+
+<TerminalDemo steps={[
+  { type: "command", text: 'claude "Pythonでフィボナッチ数列を書いて"' },
+  { type: "response", text: "✓ fibonacci.py を作成しました" },
+  { type: "response", text: "def fibonacci(n): ...", color: "var(--color-accent-pink)" },
+]} />

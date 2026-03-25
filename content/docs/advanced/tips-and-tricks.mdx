@@ -1,0 +1,35 @@
+---
+title: "Tips & テクニック"
+description: "Claude Codeをもっと使いこなすための上級テクニック"
+---
+
+## Tip 1: CLAUDE.md でプロジェクト設定を共有する
+
+プロジェクトのルートに `CLAUDE.md` を置くと、Claudeがそのプロジェクトのルールを自動的に読んでくれる。
+
+<CodeBlock lang="markdown" code={`# CLAUDE.md\n\n## プロジェクトのルール\n- Pythonはv3.11以上を使う\n- テストはpytestで書く\n- コミットはConventional Commits形式で`} />
+
+## Tip 2: /clear でコンテキストをリセット
+
+会話が長くなってClaudeの回答がおかしくなってきたら：
+
+<CodeBlock lang="bash" code="/clear" />
+
+## Tip 3: --continue で会話を続ける
+
+前回の会話を引き継いで作業したいとき：
+
+<CodeBlock lang="bash" code='claude --continue "さっきの続きから、テストも追加して"' />
+
+## Tip 4: Gitと組み合わせる
+
+作業前に必ずコミットしておくと、Claudeが間違えても `git checkout .` で元に戻せる。
+
+<CodeBlock lang="bash" code={`git add .\ngit commit -m "作業前のバックアップ"\nclaude "大幅に書き直して"`} />
+
+## Tip 5: 段階的に依頼する
+
+一度に大きな変更を頼むより、小さく分けて頼む方が精度が高い。
+
+❌ 「このアプリ全体をリファクタリングして」
+✅ 「まずapi.py の関数を整理して → 次にmodels.py を → ...」

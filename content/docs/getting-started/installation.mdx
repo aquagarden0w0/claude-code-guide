@@ -1,0 +1,32 @@
+---
+title: "インストール方法"
+description: "Node.js から Claude Code まで、0から始めるセットアップ手順"
+---
+
+## 必要なもの
+
+1. **Node.js**（v18 以上）
+2. **Anthropicアカウント**（無料で作れる）
+3. **ターミナル**（Mac: Terminal.app、Windows: PowerShell または WSL）
+
+## Step 1: Node.js をインストールする
+
+[nodejs.org](https://nodejs.org) から **LTS版** をダウンロードしてインストール。
+
+<CodeBlock lang="bash" code={`node --version\n# v20.x.x と表示されればOK`} />
+
+## Step 2: Claude Code をインストールする
+
+<CodeBlock lang="bash" code="npm install -g @anthropic-ai/claude-code" />
+
+## Step 3: ログインする
+
+<CodeBlock lang="bash" code="claude login" />
+
+ブラウザが開いてAnthropicのログイン画面が表示される。アカウントを作ってログインしよう。
+
+## Step 4: 動作確認
+
+<CodeBlock lang="bash" code='claude "こんにちは！"' />
+
+AIが返事をしてくれたらインストール完了！

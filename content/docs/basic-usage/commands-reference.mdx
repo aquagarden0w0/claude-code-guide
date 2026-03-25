@@ -1,0 +1,27 @@
+---
+title: "よく使うコマンド集"
+description: "Claude Codeでよく使うコマンドのチートシート"
+---
+
+## 基本コマンド
+
+<CodeBlock lang="bash" code={`# 話しかける（基本）\nclaude "やりたいことを書く"\n\n# ファイルを指定して話しかける\nclaude --file app.py "このファイルを修正して"\n\n# 対話モードを開始する\nclaude`} />
+
+## よく使うお願い集
+
+| コマンド | 用途 |
+|---|---|
+| `claude "〇〇.py を作って"` | 新規ファイル作成 |
+| `claude "バグを直して"` | デバッグ |
+| `claude "テストを書いて"` | テストコード生成 |
+| `claude "コードを説明して"` | コード解説 |
+| `claude "コメントを追加して"` | ドキュメント追加 |
+| `claude "リファクタリングして"` | コード整理 |
+| `claude "Gitコミットメッセージを書いて"` | コミット作成 |
+| `claude "READMEを書いて"` | ドキュメント作成 |
+
+## Skillsを使ったコマンド（Skillsインストール後）
+
+<CodeBlock lang="bash" code={`# コミットを自動作成\n/commit\n\n# コードレビュー\n/review\n\n# デバッグセッション開始\n/debug`} />
+
+Skillsは[次のページ](/docs/skills/what-are-skills)で解説！

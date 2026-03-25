@@ -1,0 +1,26 @@
+---
+title: "最初の一歩"
+description: "実際にClaude Codeを使ってみよう"
+---
+
+インストールが終わったら、さっそく使ってみよう！
+
+## まずプロジェクトフォルダに移動する
+
+<CodeBlock lang="bash" code={`mkdir my-first-project\ncd my-first-project`} />
+
+## Claudeに話しかけてみる
+
+<CodeBlock lang="bash" code='claude "hello.py というファイルを作って。Hello, World! と表示するプログラムを書いて"' />
+
+<TerminalDemo steps={[
+  { type: "command", text: 'claude "hello.py を作って"' },
+  { type: "response", text: "✓ hello.py を作成しました" },
+  { type: "response", text: 'print("Hello, World!")', color: "var(--color-accent-pink)" },
+]} />
+
+## ファイルを実行してみる
+
+<CodeBlock lang="bash" code="python hello.py" />
+
+これだけで最初のプログラムが完成！次は[AIへの話しかけ方](/docs/basic-usage/how-to-talk)を学ぼう。

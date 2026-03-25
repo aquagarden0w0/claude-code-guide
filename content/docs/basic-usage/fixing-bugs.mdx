@@ -1,0 +1,30 @@
+---
+title: "バグを直してもらう"
+description: "エラーが出たらClaudeに丸投げしよう"
+---
+
+エラーが出たときの一番のコツは「エラーメッセージをそのままClaudeに貼り付ける」こと。
+
+## 基本的な手順
+
+### 1. エラーをコピーする
+
+ターミナルに表示されたエラーメッセージを全部コピー。
+
+### 2. Claudeに貼り付ける
+
+<CodeBlock lang="bash" code={`claude "このエラーを直して:\nTraceback (most recent call last):\n  File 'app.py', line 10\nNameError: name 'user' is not defined"`} />
+
+### 3. 修正してもらう
+
+Claudeが原因を説明しながら修正してくれる。
+
+## さらに詳しく調べてもらう場合
+
+<CodeBlock lang="bash" code='claude "app.py のバグを全部見つけて修正して"' />
+
+## デバッグのお願い
+
+<CodeBlock lang="bash" code='claude "なぜこのコードが動かないか理由を説明して、修正もして"' />
+
+エラーの「なぜ」を理解することも大事。Claudeに説明してもらいながら学ぼう！

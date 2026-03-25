@@ -1,0 +1,60 @@
+---
+title: "Skillsを自分で作る"
+description: "カスタムSkillをMarkdownで書いて登録する方法"
+---
+
+Skillsは**Markdownファイル**を書くだけで誰でも作れる。自分だけのAIアシスタントを育てよう！
+
+## Skillファイルの構造
+
+```markdown
+---
+name: my-skill
+description: このSkillの説明（いつ使うかを書く）
+---
+
+# Skillの名前
+
+ここにClaudeへの指示を書く。
+
+## 手順
+
+1. まず〇〇をする
+2. 次に△△をする
+3. 最後に□□をする
+
+## 注意事項
+
+- 〇〇には気をつけること
+- △△の場合は✕✕すること
+```
+
+## 作成手順
+
+### Step 1: ファイルを作る
+
+<CodeBlock lang="bash" code={`mkdir -p ~/.claude/skills\ntouch ~/.claude/skills/my-skill.md`} />
+
+### Step 2: 内容を書く
+
+<CodeBlock lang="bash" code={`# テンプレートをコピーして編集\nclaude "my-skill.md にSkillの雛形を書いて"`} />
+
+### Step 3: 動作確認
+
+<CodeBlock lang="bash" code="/my-skill" />
+
+## 実用的なSkillの例
+
+**毎日の作業日誌を自動作成するSkill：**
+
+```markdown
+---
+name: daily-log
+description: 今日の作業内容をまとめた日誌を作る
+---
+
+今日変更したファイルとコミット履歴を確認し、
+作業日誌（YYYY-MM-DD.md）を `logs/` フォルダに作成する。
+```
+
+これをインストールすれば `/daily-log` だけで日誌が完成！

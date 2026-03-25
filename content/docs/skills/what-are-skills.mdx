@@ -1,0 +1,42 @@
+---
+title: "Skillsとは？"
+description: "Claude Codeをもっと賢くする「スーパーパワー」"
+---
+
+Skillsとは、Claude Codeに**特定の作業のやり方を教えるマニュアル**のようなもの。インストールしておくと、`/commit` や `/review` などのスラッシュコマンドで自動的に最適な手順を実行してくれる。
+
+## Skillsがない場合 vs ある場合
+
+**Skillsなし**（毎回この長い指示が必要）：
+> 「変更内容を確認して、適切なコミットメッセージをConventional Commits形式で生成して、ステージングして、コミットして」
+
+**Skillsあり**（これだけでOK）：
+
+<TerminalDemo steps={[
+  { type: "command", text: "/commit" },
+  { type: "response", text: "✓ 変更内容を解析中..." },
+  { type: "response", text: "✓ feat: ログイン機能を追加", color: "var(--color-accent-pink)" },
+  { type: "response", text: "✓ コミット完了！" },
+]} />
+
+## Skillsの仕組み
+
+Skillsは `.md` ファイルで書かれた指示書。Claude Codeがそのファイルを読んで、どう動けばいいかを学ぶ。
+
+```
+~/.claude/
+└── skills/
+    ├── commit.md     ← コミット用Skill
+    ├── review.md     ← レビュー用Skill
+    └── debug.md      ← デバッグ用Skill
+```
+
+## どんなSkillsがあるの？
+
+- **commit** — Gitコミットを自動生成
+- **review** — コードレビューを実行
+- **debug** — 体系的なデバッグ手順
+- **deploy** — デプロイ手順を自動化
+- ...など、自分でも作れる！
+
+[次のページ](/docs/skills/installing-skills)でインストール方法を確認しよう。

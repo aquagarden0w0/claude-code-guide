@@ -1,0 +1,42 @@
+---
+title: "Skillsのインストール"
+description: "公式Skillsプラグインを導入する手順"
+---
+
+## 公式プラグイン（Superpowers）のインストール
+
+Claude Codeには公式のSkillsプラグインがある。以下のコマンドでインストールできる。
+
+<CodeBlock lang="bash" code="claude /install-github-app" />
+
+または、設定ファイルを直接編集する方法：
+
+<CodeBlock lang="bash" code={`# Claude Codeの設定ファイルを開く\nclaude /settings`} />
+
+## インストール後の確認
+
+<TerminalDemo steps={[
+  { type: "command", text: "/commit" },
+  { type: "response", text: "✓ Skill 'commit' を実行中..." },
+  { type: "response", text: "✓ 変更内容を自動検出しました" },
+]} />
+
+## Skillsの保存場所
+
+```
+~/.claude/
+└── plugins/
+    └── cache/
+        └── claude-plugins-official/
+            └── superpowers/
+                └── skills/
+                    ├── commit/
+                    ├── review/
+                    └── ...
+```
+
+## アップデート方法
+
+<CodeBlock lang="bash" code="claude /update-skills" />
+
+インストールが完了したら[Skillsの作り方](/docs/skills/creating-skills)も確認してみよう！
