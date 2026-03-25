@@ -47,7 +47,7 @@ export default async function DocPage({ params }: Props) {
         <h1 className="text-2xl font-bold text-white mb-1">{doc.title}</h1>
         <p className="text-text-muted text-sm mb-8">{doc.description}</p>
         <div className="prose">
-          <MDXRemote source={doc.content} components={components} />
+          <MDXRemote source={doc.content} components={components} options={{ blockJS: false }} />
         </div>
         <PrevNextNav slug={slug} />
       </article>
