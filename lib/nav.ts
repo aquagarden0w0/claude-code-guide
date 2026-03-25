@@ -46,10 +46,11 @@ export const NAV_STRUCTURE: NavSection[] = [
   {
     title: 'もっと深く',
     items: [
-      { emoji: '⚡', label: 'Tips & テクニック',       slug: 'advanced/tips-and-tricks' },
+      { emoji: '⚡', label: 'Tips & テクニック',           slug: 'advanced/tips-and-tricks' },
+      { emoji: '📋', label: 'CLAUDE.md の使い方',          slug: 'advanced/claude-md' },
       { emoji: '⭐', label: 'おすすめプラグイン・スキル集', slug: 'advanced/recommended' },
-      { emoji: '❓', label: 'よくある質問',             slug: 'advanced/faq' },
-      { emoji: '🔗', label: 'おすすめリンク集',         slug: 'advanced/links' },
+      { emoji: '❓', label: 'よくある質問',                slug: 'advanced/faq' },
+      { emoji: '🔗', label: 'おすすめリンク集',            slug: 'advanced/links' },
     ],
   },
 ]

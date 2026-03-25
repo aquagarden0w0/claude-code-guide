@@ -1,0 +1,130 @@
+---
+title: "CLAUDE.md の使い方"
+description: "プロジェクトごとのルール設定とSkillのカスタマイズ"
+---
+
+`CLAUDE.md` はプロジェクトのルートに置くと、Claude Codeが自動的に読み込む**プロジェクト専用の指示書**。チームのルールやコーディング規約を一度書いておけば、毎回説明しなくても守ってもらえる。
+
+## グローバル設定 vs プロジェクト設定
+
+| | グローバル設定 | プロジェクト設定 |
+|---|---|---|
+| 場所 | `~/.claude/` | プロジェクトルートの `CLAUDE.md` |
+| 適用範囲 | PC上の全プロジェクト | そのプロジェクトのみ |
+| 用途 | Skills・Plugins・個人設定 | コーディング規約・ルール |
+| 例 | `/commit` Skill | 「テストはpytestで書く」 |
+
+両方が存在する場合、**プロジェクトの `CLAUDE.md` が優先**される。
+
+## CLAUDE.md の基本構成
+
+プロジェクトルートに `CLAUDE.md` ファイルを作成する：
+
+<CodeBlock lang="bash" code="touch CLAUDE.md" />
+
+```markdown
+# プロジェクト名
+
+## 技術スタック
+- Python 3.11
+- FastAPI
+- PostgreSQL（ORM: SQLAlchemy）
+
+## コーディングルール
+- 変数名・関数名は英語のスネークケース
+- 型ヒントを必ず付ける
+- 1関数は50行以内に収める
+
+## テスト
+- フレームワーク: pytest
+- テストは tests/ ディレクトリに配置
+- カバレッジ80%以上を維持
+
+## コミット
+- Conventional Commits形式（feat/fix/docs/chore）
+- 日本語でコミットメッセージを書く
+```
+
+## プロジェクト別のSkill設定
+
+### 方法1：プロジェクトローカルにSkillを置く
+
+グローバルの `~/.claude/skills/` とは別に、プロジェクト内にも `.claude/skills/` を作れる：
+
+<CodeBlock lang="bash" code={`mkdir -p .claude/skills\ntouch .claude/skills/deploy.md`} />
+
+```
+my-project/
+├── CLAUDE.md
+├── .claude/
+│   └── skills/
+│       ├── deploy.md       ← このプロジェクト専用のデプロイSkill
+│       └── seed-db.md      ← このプロジェクト専用のDB初期化Skill
+└── src/
+```
+
+このプロジェクトで作業中は `/deploy` や `/seed-db` が使えるようになる。グローバルには影響しない。
+
+### 方法2：CLAUDE.mdでSkillの使い方を指定する
+
+CLAUDE.md の中でSkillの呼び出しルールを定義できる：
+
+```markdown
+## 開発ワークフロー
+
+### コミット前に必ず実行
+/pre-deploy でビルドとテストを確認してからコミットすること。
+
+### デプロイ手順
+本番デプロイは必ず /deploy-prod を使うこと。
+手動でのデプロイコマンド実行は禁止。
+
+### コードレビュー
+PRを出す前に /security-check を実行してセキュリティ確認を行うこと。
+```
+
+こうしておくと、チームメンバーが「このプロジェクトでは何のSkillを使えばいいか」をすぐ把握できる。
+
+### 方法3：CLAUDE.mdにSkillの内容を直接書く
+
+短いSkillであればCLAUDE.md内にインラインで定義することもできる：
+
+```markdown
+## Claudeへの指示
+
+### コードを修正するとき
+必ずテストを先に書いてから実装すること（TDD）。
+テストファイルは tests/test_<module名>.py に配置する。
+
+### エラーが出たとき
+1. エラーメッセージを読んで原因を特定する
+2. 修正する前に原因をユーザーに説明する
+3. 修正後は必ずテストを実行して確認する
+```
+
+## チームでの活用
+
+CLAUDE.md をGitリポジトリにコミットしておくと、チーム全員が同じ設定でClaude Codeを使える：
+
+<CodeBlock lang="bash" code={`git add CLAUDE.md .claude/skills/\ngit commit -m "chore: Claude Code設定を追加"`} />
+
+新しいメンバーがリポジトリをcloneするだけで、プロジェクトのルールとSkillが自動的に反映される。
+
+## 設定の優先順位
+
+Claude Codeが指示を読む順番：
+
+```
+1. ~/.claude/CLAUDE.md          （グローバル設定）
+2. プロジェクトルートの CLAUDE.md （プロジェクト設定）← より優先
+3. ~/.claude/skills/            （グローバルSkill）
+4. .claude/skills/              （プロジェクトローカルSkill）← より優先
+```
+
+競合する設定がある場合は、**より具体的な（プロジェクトに近い）設定が優先**される。
+
+## CLAUDE.md 作成のヒント
+
+<CodeBlock lang="bash" code='claude "このプロジェクトのCLAUDE.mdを作って。技術スタックとコーディング規約をまとめて"' />
+
+Claudeにプロジェクトを読み込ませてCLAUDE.mdを自動生成させることもできる。
