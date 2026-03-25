@@ -61,7 +61,14 @@ export default function Sidebar() {
           <div className="w-[260px] bg-bg-secondary border-r border-bg-border px-4 py-6 overflow-y-auto">
             <NavContent onClose={() => setOpen(false)} />
           </div>
-          <div className="flex-1 bg-black/60" onClick={() => setOpen(false)} />
+          <div
+            className="flex-1 bg-black/60"
+            role="button"
+            tabIndex={0}
+            aria-label="メニューを閉じる"
+            onClick={() => setOpen(false)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') setOpen(false) }}
+          />
         </div>
       )}
     </>

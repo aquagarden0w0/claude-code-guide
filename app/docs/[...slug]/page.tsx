@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getDocBySlug } from '@/lib/mdx'
 import { getAllSlugs } from '@/lib/nav'
@@ -10,6 +11,24 @@ import CodeBlock from '@/components/CodeBlock'
 const components = { TerminalDemo, CodeBlock }
 
 type Props = { params: Promise<{ slug: string[] }> }
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>
+}): Promise<Metadata> {
+  const { slug: slugParts } = await params
+  const slug = slugParts.join('/')
+  try {
+    const doc = await getDocBySlug(slug)
+    return {
+      title: `${doc.title} | Claude Code Guide`,
+      description: doc.description,
+    }
+  } catch {
+    return { title: 'Claude Code Guide' }
+  }
+}
 
 export async function generateStaticParams() {
   return getAllSlugs().map(slug => ({

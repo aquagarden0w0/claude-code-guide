@@ -16,10 +16,18 @@ export type Doc = DocMeta & {
 
 export async function getDocBySlug(slug: string): Promise<Doc> {
   const filePath = path.join(CONTENT_DIR, `${slug}.mdx`)
-  if (!fs.existsSync(filePath)) {
-    throw new Error(`Doc not found: ${slug}`)
+  if (!filePath.startsWith(CONTENT_DIR + path.sep)) {
+    throw new Error(`Invalid slug: ${slug}`)
   }
-  const raw = fs.readFileSync(filePath, 'utf8')
+  let raw: string
+  try {
+    raw = fs.readFileSync(filePath, 'utf8')
+  } catch (err: unknown) {
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
+      throw new Error(`Doc not found: ${slug}`)
+    }
+    throw err
+  }
   const { data, content } = matter(raw)
   return {
     title: data.title ?? '',
