@@ -169,6 +169,21 @@ code, pre {
 .prose a:hover { color: var(--color-accent-pink); }
 .prose strong { color: var(--color-accent-pink); font-weight: 600; }
 .prose blockquote { border-left: 4px solid var(--color-accent-purple); padding-left: 1rem; color: var(--color-text-muted); font-style: italic; margin: 1rem 0; }
+.prose code {
+  background: var(--color-bg-card);
+  color: var(--color-accent-pink);
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-family: monospace;
+}
+.prose pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
 
 @keyframes typing {
   from { width: 0 }
