@@ -1,11 +1,15 @@
 ---
 title: "Pluginsのインストール"
-description: "公式プラグイン（Superpowers）を導入する手順"
+description: "公式・コミュニティプラグインの導入手順まとめ"
+---
+
+プラグインのインストール方法は、**公式プラグイン**と**コミュニティプラグイン**で少し異なるよ！
+
 ---
 
 ## 公式プラグイン（Superpowers）のインストール
 
-Claude Code起動後、以下のコマンドを入力するだけでインストールできる：
+Claude Code起動後、以下のコマンドを入力するだけ：
 
 <CodeBlock lang="bash" code="claude /install-github-app" />
 
@@ -22,35 +26,72 @@ Claude Code起動後、以下のコマンドを入力するだけでインスト
 
 `/commit` や `/review` が動けばインストール成功！
 
-## インストール先
+---
 
-プラグインは以下のパスに保存される：
+## コミュニティSkill（単品）のインストール
+
+公式コマンドは使えない。でも手順はとってもシンプル！
+
+### コマンドラインで入れる方法
+
+GitHubなどで見つけた `.md` ファイルのURLをそのままダウンロードするよ：
+
+<CodeBlock lang="bash" code={`# curlでダウンロードして直接配置\ncurl -o ~/.claude/skills/standup.md \\\n  https://raw.githubusercontent.com/someone/repo/main/standup.md`} />
+
+### ファイル操作で入れる方法（コマンドライン不要！）
+
+1. GitHubでSkillの `.md` ファイルを開いて内容をコピー
+2. `~/.claude/skills/` フォルダを開く
+
+<CodeBlock lang="bash" code={`# Mac / Linux\nopen ~/.claude/skills/\n\n# Windows（エクスプローラーで開く）\nexplorer %USERPROFILE%\\.claude\\skills\\`} />
+
+3. フォルダ内に新しいテキストファイルを作成（例：`standup.md`）
+4. コピーした内容を貼り付けて保存
+
+これだけで `/standup` が使えるようになる！
+
+---
+
+## コミュニティPlugin（スキル集）のインストール
+
+複数のSkillが入ったプラグインフォルダをそのまま配置する。
+
+### コマンドラインで入れる方法
+
+<CodeBlock lang="bash" code={`# GitHubからリポジトリごとcloneして配置\ngit clone https://github.com/someone/awesome-plugin \\\n  ~/.claude/plugins/cache/awesome-plugin`} />
+
+### ファイル操作で入れる方法
+
+1. GitHubのリポジトリページで **「Code → Download ZIP」** をクリック
+2. ZIPを解凍してできたフォルダを `~/.claude/plugins/cache/` 内にコピー
 
 ```
 ~/.claude/plugins/cache/
-└── claude-plugins-official/
-    └── superpowers/
-        └── skills/
-            ├── commit/
-            ├── review/
-            └── ...
+└── awesome-plugin/       ← ここに置く
+    └── skills/
+        ├── deploy.md
+        └── review.md
 ```
+
+3. Claude Codeを再起動すれば `/deploy` などが使えるようになる！
+
+---
+
+## インストール先まとめ
+
+| 種類 | 保存場所 |
+|---|---|
+| 公式Plugin（Superpowers） | `~/.claude/plugins/cache/superpowers/` |
+| コミュニティPlugin | `~/.claude/plugins/cache/<plugin名>/` |
+| コミュニティSkill単品 | `~/.claude/skills/<skill名>.md` |
+| プロジェクト専用Skill | `.claude/skills/<skill名>.md`（プロジェクト内） |
 
 ## アップデート方法
 
+公式Superpowersプラグインのみ、コマンドでアップデートできる：
+
 <CodeBlock lang="bash" code="claude /update-skills" />
 
-新しいSkillが追加されたときもこのコマンドで最新版に更新できる。
-
-## 複数のプラグインを管理する
-
-プラグインごとに独立したディレクトリで管理されるため、複数のプラグインを共存させることができる。
-
-```
-~/.claude/plugins/cache/
-├── superpowers/          ← 公式プラグイン
-├── my-team-plugin/       ← チームのプラグイン
-└── personal-plugin/      ← 個人のプラグイン
-```
+コミュニティPluginは、元のリポジトリを `git pull` するか、新しいZIPをダウンロードして上書きする。
 
 インストールが完了したら[Pluginsを自分で作る](/docs/plugins/creating-plugins)も読んでみよう！

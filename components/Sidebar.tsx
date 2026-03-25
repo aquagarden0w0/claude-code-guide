@@ -11,7 +11,14 @@ function NavContent({ onClose }: { onClose?: () => void }) {
     <>
       {NAV_STRUCTURE.map(section => (
         <div key={section.title} className="mb-6">
-          <p className="text-text-muted text-[10px] uppercase tracking-widest mb-2">
+          <p className="text-[10px] font-bold tracking-widest mb-2"
+            style={{
+              background: 'linear-gradient(120deg, #ce93d8, #f48fb1)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
             {section.title}
           </p>
           {section.items.map(item => {
