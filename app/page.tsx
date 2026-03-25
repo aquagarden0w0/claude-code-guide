@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import TerminalDemo from '@/components/TerminalDemo'
-import { Button } from '@/components/ui/button'
 
 const HERO_STEPS = [
   { type: 'command' as const, text: 'claude "hello.py を作って"' },
@@ -50,16 +49,18 @@ export default function HomePage() {
       <TerminalDemo steps={HERO_STEPS} />
 
       <div className="flex gap-4 mb-16">
-        <Button asChild className="bg-accent-purple hover:bg-accent-purple-dim text-white">
-          <Link href="/docs/getting-started/installation">
-            まずはインストールしよう →
-          </Link>
-        </Button>
-        <Button asChild variant="outline" className="border-bg-border text-text-secondary">
-          <Link href="/docs/skills/what-are-skills">
-            Skillsを見る
-          </Link>
-        </Button>
+        <Link
+          href="/docs/getting-started/installation"
+          className="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium bg-accent-purple hover:bg-accent-purple-dim text-white transition-colors"
+        >
+          まずはインストールしよう →
+        </Link>
+        <Link
+          href="/docs/skills/what-are-skills"
+          className="inline-flex items-center justify-center rounded-lg border border-bg-border px-4 py-2 text-sm font-medium text-text-secondary hover:bg-bg-hover transition-colors"
+        >
+          Skillsを見る
+        </Link>
       </div>
 
       {/* 特徴カード */}
