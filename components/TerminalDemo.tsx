@@ -12,12 +12,15 @@ type Props = {
 }
 
 export default function TerminalDemo({ steps = [], loop = true }: Props) {
-  const [visible, setVisible] = useState<number>(0)
+  // Start at 1 so the first command is visible immediately (no blank initial state)
+  const [visible, setVisible] = useState<number>(steps.length > 0 ? 1 : 0)
 
   useEffect(() => {
+    if (steps.length === 0) return
     if (visible >= steps.length) {
       if (loop) {
-        const t = setTimeout(() => setVisible(0), 2000)
+        // Reset to 1 (not 0) to skip the blank-then-type period on loop restart
+        const t = setTimeout(() => setVisible(1), 2000)
         return () => clearTimeout(t)
       }
       return
@@ -44,7 +47,7 @@ export default function TerminalDemo({ steps = [], loop = true }: Props) {
             className={`mb-1 fade-in ${
               step.type === 'command' ? 'text-accent-purple' : ''
             }`}
-            style={{ color: step.type === 'response' ? (step.color ?? 'var(--color-accent-purple)') : undefined }}
+            style={{ color: step.type === 'response' ? (step.color ?? '#ce93d8') : undefined }}
           >
             {step.type === 'command' && (
               <span className="text-text-muted mr-2">$</span>
